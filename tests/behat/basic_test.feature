@@ -51,14 +51,12 @@ Feature: Test all the basic functionality of pmatch question type
       | id_converttospace       | ;:                                                              |
     And I press "Cancel"
 
+    And the following config values are set as admin:
+      | behaviour | interactive | question_preview |
+      | maxmark   | 3           | question_preview |
+      | marks     | 2           | question_preview |
     # Preview it. Test correct and incorrect answers.
-    And I am on the "My first pattern match question" "core_question > preview" page
-
-    And I set the following fields to these values:
-      | How questions behave | Interactive with multiple tries |
-      | Marked out of        | 3                               |
-      | Marks                | Show mark and max               |
-    And I press "Start again with these options"
+    And I am on the "My first pattern match question" "core_question > preview" page logged in as teacher
     Then I should see "Listen, translate and write"
     And the state of "Listen, translate and write" question is shown as "Tries remaining: 3"
     When I set the field "Answer:" to "testing"
